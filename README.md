@@ -4,8 +4,8 @@ This is my Dockerfiles.
 
 ## Server
 
-- [h2o](https://github.com/tcnksm/dockerfiles/tree/master/h2o)
-- [nghttp2](https://github.com/tcnksm/dockerfiles/tree/master/nghttp2)
+- [h2o](/h2o)
+- [nghttp2](/nghttp2)
 
 
 ## Author
