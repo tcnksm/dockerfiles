@@ -1,6 +1,6 @@
-# Dockerfile-nghttp2
+# Dockerfile nghttp2
 
-This is Dockerfile for trying [nghttp2](https://github.com/tatsuhiro-t/nghttp2).
+This is Dockerfile for [nghttp2](https://github.com/tatsuhiro-t/nghttp2).
 
 Build it,
 

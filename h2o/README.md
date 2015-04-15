@@ -1,4 +1,4 @@
-# Dockerfile-h2o
+# Dockerfile h2o
 
 This is Dockerfile for trying [h2o](https://github.com/h2o/h2o).
 
