@@ -1,6 +1,6 @@
 # Dockerfiles [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/tcnksm/dockerfiles/blob/master/LICENCE)
 
-This is my Dockerfiles.
+My Dockerfiles. If I want to something new, start from Dockerfile :)
 
 ## Server
 
