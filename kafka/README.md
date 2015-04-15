@@ -1,6 +1,6 @@
-# Dockerfile Apache Kafka
+# Apache Kafka
 
-This is Dockerfile for [Apache Kafka](http://kafka.apache.org/). You can try [Quick Start](http://kafka.apache.org/documentation.html#quickstart) in Docker conatainer
+This is Dockerfile for [Apache Kafka](http://kafka.apache.org/). 
 
 To build image,
 
@@ -16,22 +16,24 @@ $ docker run --rm -it tcnksm/kafka /bin/bash
 
 ## Basic
 
+You can try [Quick Start](http://kafka.apache.org/documentation.html#quickstart) in Docker conatainer.
+
 To get a quick-and-dirty single-node ZooKeeper instance,
 
 ```bash
-# bin/zookeeper-server-start.sh config/zookeeper.properties &
+$ bin/zookeeper-server-start.sh config/zookeeper.properties &
 ```
 
 To start kafka server,
 
 ```bash
-# bin/kafka-server-start.sh config/server.properties &
+$ bin/kafka-server-start.sh config/server.properties &
 ```
 
 To create topic,
 
 ```bash
-# bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic tcnksm
+$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic tcnksm
 ```
 
 - `--replication-factor` is ...
@@ -40,14 +42,14 @@ To create topic,
 To list topic,
 
 ```bash
-# bin/kafka-topics.sh --list --zookeeper localhost:2181
+$ bin/kafka-topics.sh --list --zookeeper localhost:2181
 tcnksm
 ```
 
 To send messages,
 
 ```bash
-# bin/kafka-console-producer.sh --broker-list localhost:9092 --topic tcnksm
+$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic tcnksm
 This is message A
 This is message B
 ```
@@ -58,28 +60,32 @@ This is message B
 To start consumer,
 
 ```bash
-# bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic tcnksm --from-beginning
+$ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic tcnksm --from-beginning
 This is message A
 This is message B
 ```
 
 (We can get this message until broker deletes)
 
-## Multi-brocker tutorial
+ Multi-brocker tutorial
 
 Prepare configuration, 
 
 ```bash
-# cp config/server.properties config/server-1.properties
-# cp config/server.properties config/server-2.properties
+$ cp config/server.properties config/server-1.properties
+$ cp config/server.properties config/server-2.properties
 ```
+
+Edit configuration,
 
 ```bash
 config/server-1.properties:
     broker.id=1
     port=9093
     log.dir=/tmp/kafka-logs-1
-
+```
+    
+```bash
 config/server-2.properties:
     broker.id=2
     port=9094
@@ -91,26 +97,26 @@ config/server-2.properties:
 To start server,
 
 ```bash
-# bin/kafka-server-start.sh config/server-1.properties &
-# bin/kafka-server-start.sh config/server-2.properties &
+$ bin/kafka-server-start.sh config/server-1.properties &
+$ bin/kafka-server-start.sh config/server-2.properties &
 ```
 
 To create topic with a replication factor `3`,
 
 ```bash
-# bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic
+$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 3 --partitions 1 --topic my-replicated-topic
 ```
 
 To describe topic (to see which broker is doing what?),
 
 ```bash
-# bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+$ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
 ```
 
 To publish message,
 
 ```bash
-# bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-replicated-topic
+$ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-replicated-topic
 my test message 1
 my test message 2
 my test message 3
@@ -119,7 +125,7 @@ my test message 3
 To consume message,
 
 ```bash
-# bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic my-replicated-topic
+$ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic my-replicated-topic
 ```
 
 To check fault-tolerance, kill one broker,
@@ -132,11 +138,15 @@ $ kill -9 ...
 Check broker status,
 
 ```bash
-# bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
+$ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
 ```
 
 To subcribe again,
 
 ```bash
-# bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic my-replicated-topic
+$ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic my-replicated-topic
 ```
+
+## Reference
+
+- [https://github.com/spotify/docker-kafka](https://github.com/spotify/docker-kafka)
