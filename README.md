@@ -6,7 +6,7 @@ My Dockerfiles. If I want to something new, start from Dockerfile.
 
 - [h2o](/h2o)
 - [nghttp2](/nghttp2)
-- [Apache Kafla](/kafka)
+- [Apache Kafka](/kafka)
 
 ## Author
 
